@@ -1,0 +1,78 @@
+.development {
+    background-color: $black;
+    padding: 138px 0 0 0;
+
+    &__top {
+        @include adaptiv-size('font-size', 68, 28);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        font-weight: 700;
+
+        @media(max-width: $breakpoint-991) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+    }
+
+    &__key {
+        font-family: "Benzin";
+        text-transform: lowercase;
+        color: $white;
+        flex: 0 0 70%;
+        line-height: 130%;
+
+
+    }
+
+    &__sporttech {
+        @include adaptiv-size('font-size', 26, 18);
+        color: $white-50;
+        line-height: 130%;
+    }
+
+    &__list {}
+
+    &__item {}
+}
+
+.key-development {
+    &__name {
+        position: relative;
+        text-transform: capitalize;
+        z-index: 10;
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 5px;
+        width: calc(100% - 10px);
+        height: 100%;
+        background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 98.97%);
+        transform: rotate(-2.7deg);
+        z-index: -1;
+
+        @media(max-width: $breakpoint-575) {
+            width: calc(100% + 10px);
+            left: -10px;
+        }
+    }
+}
+
+.item-development {
+
+    &__num-wrapper {}
+
+    &__arrow {}
+
+    &__num {}
+
+    &__descr {}
+
+    &__title {}
+
+    &__text {}
+}

@@ -1,0 +1,121 @@
+.header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 50px;
+    color: $white-50;
+
+    &__logo {
+        @include adaptiv-size('width', 128, 70);
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+
+    &__nav {
+        @media(max-width: $breakpoint-991) {
+            display: none;
+        }
+    }
+
+    &__list {
+        @include adaptiv-size('gap', calc(65.97 - (19.79 * 2)), 10);
+        display: flex;
+        align-items: center;
+        // gap: calc(65.97px - (19.79px * 2));
+    }
+
+    &__item {
+        @include adaptiv-size('font-size', 18, 12);
+        text-transform: lowercase;
+        padding: 9.24px 19.79px;
+        transition: .3s all ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $white-20;
+            border-radius: 40px;
+        }
+
+        &_active {
+            background-color: $white-20;
+            border-radius: 40px;
+        }
+    }
+
+}
+
+.header-burger {
+
+    &__btn-wrapper {
+        display: none;
+        justify-content: center;
+
+        @media(max-width: $breakpoint-991) {
+            display: flex;
+        }
+    }
+
+    &__btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        width: 25px;
+        cursor: pointer;
+
+        span {
+            width: 25px;
+            height: 2px;
+            background-color: $white-50;
+        }
+    }
+
+    &__menu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100vh;
+        z-index: 110;
+        padding: 50px 10px 50px 50px;
+
+        &_active {
+            display: block;
+            background-color: $black;
+        }
+    }
+
+    &__close {
+        position: absolute;
+        top: 35px;
+        right: 35px;
+        font-size: 24px;
+        color: $white-50;
+        cursor: pointer;
+
+        @media(max-width:$breakpoint-767) {
+            top: 20px;
+            right: 20px;
+        }
+    }
+
+    &__nav {
+        height: 100%;
+    }
+
+    &__item {
+        &:nth-child(n):not(:first-child) {
+            margin-top: 20px;
+        }
+    }
+
+    &__navlink {
+        color: $white-50;
+    }
+}
