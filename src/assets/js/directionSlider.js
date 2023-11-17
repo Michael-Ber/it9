@@ -16,8 +16,8 @@ export const directionSliderInteraction = () => {
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 576) {
-                sliderInit();
-                wheelMouse();
+                setTimeout(sliderInit, 1000);
+                // wheelMouse();
             } else {
                 sliderReset();
             }
@@ -25,46 +25,7 @@ export const directionSliderInteraction = () => {
         if (window.innerWidth > 576) {
             sliderInit();
             wheelMouse();
-            // window.addEventListener('wheel', (e) => {
-            //     if (e.deltaY > 0 && !stopScrolling) {
-            //         if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
-            //             body.style.overflow = 'hidden';
-            //             if (e.deltaY > 0) {
-            //                 deltaYPlus += e.deltaY;
-            //                 deltaYMinus = 0;
-            //                 if (deltaYPlus > 100) {
-            //                     nextHandler();
-            //                     deltaYPlus = 0;
-            //                 }
-            //             }
-            //         }
-            //     } else {
-            //         body.style.overflow = 'auto';
-            //     }
-
-            // })
-
-
-
-            // section.addEventListener('wheel', (e) => {
-            //     console.log(e)
-            //     if (e.deltaY > 0) {
-            //         deltaYPlus += e.deltaY;
-            //         deltaYMinus = 0;
-            //         if (deltaYPlus > 100) {
-            //             nextHandler();
-            //             deltaYPlus = 0;
-            //         }
-            //     }
-            //     // else {
-            //     //     deltaYMinus += e.deltaY;
-            //     //     deltaYPlus = 0;
-            //     //     if (deltaYMinus < -200) {
-            //     //         prevHandler();
-            //     //         deltaYMinus = 0;
-            //     //     }
-            //     // }
-            // })
+            
         } else {
             sliderReset();
         }
@@ -72,11 +33,12 @@ export const directionSliderInteraction = () => {
         function sliderInit() {
             offset = 0;
             slideIndex = 0;
-            slideWidth = Number((window.getComputedStyle(slides[0]).width).replace(/px/ig, ''));
-            wrapper.style.width = slides.length * slideWidth + 'px';
-
+            stopScrolling = false;
+            wrapper.style.transform = `translateX(${offset}px)`;
             slides.forEach((slide, i) => {
                 setSlidesSizes(slide, i);
+                slide.classList.remove('carousel-direction__slide_active');
+                slides[slideIndex].classList.add('carousel-direction__slide_active');
             })
         }
 
@@ -92,6 +54,9 @@ export const directionSliderInteraction = () => {
                 Array.from(slide.children).forEach(child => {
                     child.style.opacity = `${0.3 / i}`;//уменьшение opacity
                 })
+                slideWidth = Number((window.getComputedStyle(slides[0]).width).replace(/px/ig, ''));
+                console.log(slideWidth)
+                wrapper.style.width = slides.length * slideWidth + 'px';
             }
         }
 
@@ -109,6 +74,7 @@ export const directionSliderInteraction = () => {
         }
 
         function wheelMouse() {
+            
             window.addEventListener('wheel', (e) => {
                 if (e.deltaY > 0 && !stopScrolling) {
                     if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
@@ -126,6 +92,36 @@ export const directionSliderInteraction = () => {
                     body.style.overflow = 'auto';
                 }
             })
+        }
+
+        function nextHandler() {
+
+            if (slideIndex < slides.length - 1) {
+                offset += -slideWidth;
+                slideIndex++;
+            } else {
+                // offset = 0;
+                // slideIndex = 0;
+                // slides.forEach((slide, i) => {
+                //     setSlidesSizes(slide, i);
+                // })
+            }
+            if (slideIndex > slides.length - 2) {
+                stopScrolling = true;
+            }
+            wrapper.style.transform = `translateX(${offset}px)`;
+            slides.forEach(slide => {
+                slide.classList.remove('carousel-direction__slide_active');
+                // setSlidesSizes(slides[slideIndex], slideIndex);
+            })
+            slides[slideIndex].classList.add('carousel-direction__slide_active');
+
+            for (let i = 1; i < slideIndex; i++) {
+                slides[i].style.marginLeft = 0;//при движении влево чтобы слайды правильно позиционировались слайдам что остались слева делаем margin 0 
+            }
+            for (let i = slideIndex + 1; i < slides.length; i++) {
+                slides[i].style.transform = `scale(${1 - (i - (slideIndex)) / 10})`;//в цепочке слайдов при движении влево пересчитываем масштаб для слайдов справа
+            }
         }
 
         function prevHandler() {
@@ -151,34 +147,7 @@ export const directionSliderInteraction = () => {
                 slides[i].style.transform = `scale(${1 - (i - (slideIndex)) / 10})`;//по аналогии с next
             }
         }
-        function nextHandler() {
-            if (slideIndex < slides.length - 1) {
-                offset += -slideWidth;
-                slideIndex++;
-            } else {
-                // offset = 0;
-                // slideIndex = 0;
-                slides.forEach((slide, i) => {
-                    setSlidesSizes(slide, i);
-                })
-            }
-            if (slideIndex > slides.length - 2) {
-                stopScrolling = true;
-            }
-            wrapper.style.transform = `translateX(${offset}px)`;
-            slides.forEach(slide => {
-                slide.classList.remove('carousel-direction__slide_active');
-                // setSlidesSizes(slides[slideIndex], slideIndex);
-            })
-            slides[slideIndex].classList.add('carousel-direction__slide_active');
-
-            for (let i = 1; i < slideIndex; i++) {
-                slides[i].style.marginLeft = 0;//при движении влево чтобы слайды правильно позиционировались слайдам что остались слева делаем margin 0 
-            }
-            for (let i = slideIndex + 1; i < slides.length; i++) {
-                slides[i].style.transform = `scale(${1 - (i - (slideIndex)) / 10})`;//в цепочке слайдов при движении влево пересчитываем масштаб для слайдов справа
-            }
-        }
+        
 
 
     } catch (error) {
@@ -186,3 +155,42 @@ export const directionSliderInteraction = () => {
     }
 }
 
+
+// window.addEventListener('wheel', (e) => {
+            //     if (e.deltaY > 0 && !stopScrolling) {
+            //         if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
+            //             body.style.overflow = 'hidden';
+            //             if (e.deltaY > 0) {
+            //                 deltaYPlus += e.deltaY;
+            //                 deltaYMinus = 0;
+            //                 if (deltaYPlus > 100) {
+            //                     nextHandler();
+            //                     deltaYPlus = 0;
+            //                 }
+            //             }
+            //         }
+            //     } else {
+            //         body.style.overflow = 'auto';
+            //     }
+
+            // })
+
+// section.addEventListener('wheel', (e) => {
+            //     console.log(e)
+            //     if (e.deltaY > 0) {
+            //         deltaYPlus += e.deltaY;
+            //         deltaYMinus = 0;
+            //         if (deltaYPlus > 100) {
+            //             nextHandler();
+            //             deltaYPlus = 0;
+            //         }
+            //     }
+            //     // else {
+            //     //     deltaYMinus += e.deltaY;
+            //     //     deltaYPlus = 0;
+            //     //     if (deltaYMinus < -200) {
+            //     //         prevHandler();
+            //     //         deltaYMinus = 0;
+            //     //     }
+            //     // }
+            // })
