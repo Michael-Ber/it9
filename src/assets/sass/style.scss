@@ -4,6 +4,7 @@
 @import './blocks/header';
 @import './blocks/intro';
 @import './blocks/development';
+@import './blocks/direction';
 
 * {
     margin: 0;
@@ -37,7 +38,7 @@ img {
 }
 
 .btn {
-    @include adaptiv-size('font-size', 20, 14);
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,4 +53,16 @@ img {
     &:hover {
         background-color: lighten($gray, 10%);
     }
+}
+
+.section-title {
+    @include adaptiv-size('font-size', 76, 28);
+    font-family: "Benzin";
+    font-weight: 700;
+    text-transform: lowercase;
+    background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 53.97%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }

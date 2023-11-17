@@ -1,0 +1,114 @@
+.direction {
+    background-color: $black;
+    padding: 0 0 113px 0;
+
+
+    &__wrapper {
+        @include adaptiv-size('padding-left', 145, 50);
+
+        @media(max-width: $breakpoint-575) {
+            padding: 0 30px;
+        }
+    }
+
+    &__title {}
+
+    &__carousel {
+        overflow: hidden;
+        margin-top: 106px;
+
+    }
+}
+
+.carousel-direction {
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        transition: 0.3s transform ease;
+
+        @media(max-width: $breakpoint-575) {
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+        }
+    }
+
+    &__slide {
+        @include adaptiv-size('flex-basis', 915, 270);
+        position: relative;
+        flex-shrink: 0;
+        flex-grow: 0;
+        min-height: 708px;
+        padding: 150px 73px 140px 111px;
+        border-radius: 35px;
+        background-color: rgba(#1f1f1f, .8);
+        backdrop-filter: blur(5px);
+        transition: 0.3s all ease;
+
+
+
+        &_active {
+            transform: scale(1) !important;
+            margin-left: 0 !important;
+            z-index: 100 !important;
+
+            &>.slide-carousel-direction__title {
+                opacity: 1 !important;
+            }
+
+            &>.slide-carousel-direction__descr {
+                opacity: 1 !important;
+            }
+
+            &>.slide-carousel-direction__btn {
+                opacity: 1 !important;
+            }
+        }
+
+
+
+
+        @media(max-width: $breakpoint-991) {
+            padding: 150px 40px 140px 80px;
+        }
+
+        @media(max-width: $breakpoint-767) {
+            padding: 150px 35px 140px 35px;
+        }
+
+        @media(max-width: $breakpoint-575) {
+            padding: 50px 35px 50px 35px;
+            min-height: unset;
+        }
+    }
+}
+
+.slide-carousel-direction {
+
+    &__title {
+        @include adaptiv-size("font-size", 68, 38);
+        font-weight: 600;
+        background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 53.97%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__descr {
+        @include adaptiv-size("font-size", 24, 16);
+        @include adaptiv-size("margin-top", 66, 44);
+        color: $white-70;
+        line-height: 150%;
+
+
+    }
+
+    &__btn {
+        @include adaptiv-size("width", 294, 241);
+        @include adaptiv-size("height", 68, 60);
+        @include adaptiv-size("margin-top", 66, 44);
+        @include adaptiv-size('font-size', 24, 18);
+        background-color: $gray-light !important;
+    }
+}

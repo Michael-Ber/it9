@@ -86,6 +86,36 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/assets/js/animateDevelopment.js":
+/*!*********************************************!*\
+  !*** ./src/assets/js/animateDevelopment.js ***!
+  \*********************************************/
+/*! exports provided: animateDevelopment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animateDevelopment", function() { return animateDevelopment; });
+const animateDevelopment = () => {
+  try {
+    const list = document.querySelector('.development__list');
+    const listItems = document.querySelectorAll('.development__item');
+    window.addEventListener('scroll', () => {
+      listItems.forEach(item => {
+        if (item.getBoundingClientRect().top - window.innerHeight < -230) {
+          item.style.opacity = 1;
+        } else {
+          item.style.opacity = 0;
+        }
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/***/ }),
+
 /***/ "./src/assets/js/animateIntro.js":
 /*!***************************************!*\
   !*** ./src/assets/js/animateIntro.js ***!
@@ -142,6 +172,195 @@ const burgerInteraction = () => {
 
 /***/ }),
 
+/***/ "./src/assets/js/directionSlider.js":
+/*!******************************************!*\
+  !*** ./src/assets/js/directionSlider.js ***!
+  \******************************************/
+/*! exports provided: directionSliderInteraction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "directionSliderInteraction", function() { return directionSliderInteraction; });
+const directionSliderInteraction = () => {
+  try {
+    const body = document.querySelector('body');
+    const section = document.querySelector('.direction');
+    const wrapper = document.querySelector('.carousel-direction__wrapper');
+    const slides = document.querySelectorAll('.carousel-direction__slide');
+    let slideWidth = Number(window.getComputedStyle(slides[0]).width.replace(/px/ig, ''));
+    let slideIndex = 0;
+    let offset = 0;
+    let stopScrolling = false;
+    let deltaYPlus = 0;
+    let deltaYMinus = 0;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 576) {
+        sliderInit();
+        wheelMouse();
+      } else {
+        sliderReset();
+      }
+    });
+    if (window.innerWidth > 576) {
+      sliderInit();
+      wheelMouse();
+      // window.addEventListener('wheel', (e) => {
+      //     if (e.deltaY > 0 && !stopScrolling) {
+      //         if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
+      //             body.style.overflow = 'hidden';
+      //             if (e.deltaY > 0) {
+      //                 deltaYPlus += e.deltaY;
+      //                 deltaYMinus = 0;
+      //                 if (deltaYPlus > 100) {
+      //                     nextHandler();
+      //                     deltaYPlus = 0;
+      //                 }
+      //             }
+      //         }
+      //     } else {
+      //         body.style.overflow = 'auto';
+      //     }
+
+      // })
+
+      // section.addEventListener('wheel', (e) => {
+      //     console.log(e)
+      //     if (e.deltaY > 0) {
+      //         deltaYPlus += e.deltaY;
+      //         deltaYMinus = 0;
+      //         if (deltaYPlus > 100) {
+      //             nextHandler();
+      //             deltaYPlus = 0;
+      //         }
+      //     }
+      //     // else {
+      //     //     deltaYMinus += e.deltaY;
+      //     //     deltaYPlus = 0;
+      //     //     if (deltaYMinus < -200) {
+      //     //         prevHandler();
+      //     //         deltaYMinus = 0;
+      //     //     }
+      //     // }
+      // })
+    } else {
+      sliderReset();
+    }
+    function sliderInit() {
+      offset = 0;
+      slideIndex = 0;
+      slideWidth = Number(window.getComputedStyle(slides[0]).width.replace(/px/ig, ''));
+      wrapper.style.width = slides.length * slideWidth + 'px';
+      slides.forEach((slide, i) => {
+        setSlidesSizes(slide, i);
+      });
+    }
+    function setSlidesSizes(slide, i) {
+      if (i > 0) {
+        if (i < 9) {
+          slide.style.transform = `scale(${1 - i / 10})`;
+        } else {
+          slide.style.transform = `scale(0.1)`; //ограничение по масштабу при превышении кол-ва слайдов 10
+        }
+
+        slide.style.zIndex = `${100 - i}`; //уменьшение z-index
+        slide.style.marginLeft = `${(-272 - -150) / (1920 - 390) * (window.innerWidth - 390) + -150}px`; //отрицательный margin для наезда слайдов
+        Array.from(slide.children).forEach(child => {
+          child.style.opacity = `${0.3 / i}`; //уменьшение opacity
+        });
+      }
+    }
+
+    function sliderReset() {
+      wrapper.style.transform = `translateX(${0}px)`;
+      wrapper.style.width = '100%';
+      slides.forEach(slide => {
+        slide.style.marginLeft = 0;
+        slide.style.zIndex = 100;
+        slide.style.transform = 'scale(1)';
+        Array.from(slide.children).forEach(child => {
+          child.style.opacity = 1;
+        });
+      });
+    }
+    function wheelMouse() {
+      window.addEventListener('wheel', e => {
+        if (e.deltaY > 0 && !stopScrolling) {
+          if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
+            body.style.overflow = 'hidden';
+            if (e.deltaY > 0) {
+              deltaYPlus += e.deltaY;
+              deltaYMinus = 0;
+              if (deltaYPlus > 100) {
+                nextHandler();
+                deltaYPlus = 0;
+              }
+            }
+          }
+        } else {
+          body.style.overflow = 'auto';
+        }
+      });
+    }
+    function prevHandler() {
+      if (slideIndex <= 0) {
+        offset = -slideWidth * (slides.length - 1);
+        slideIndex = slides.length - 1;
+      } else {
+        slideIndex--;
+        offset += slideWidth;
+      }
+      wrapper.style.transform = `translateX(${offset}px)`;
+      slides.forEach(slide => {
+        slide.classList.remove('carousel-direction__slide_active');
+        setSlidesSizes(slides[slideIndex], slideIndex);
+      });
+      slides[slideIndex].classList.add('carousel-direction__slide_active');
+      for (let i = 1; i < slideIndex; i++) {
+        slides[i].style.marginLeft = 0; //по аналогии с next
+      }
+
+      for (let i = slideIndex + 1; i < slides.length; i++) {
+        slides[i].style.transform = `scale(${1 - (i - slideIndex) / 10})`; //по аналогии с next
+      }
+    }
+
+    function nextHandler() {
+      if (slideIndex < slides.length - 1) {
+        offset += -slideWidth;
+        slideIndex++;
+      } else {
+        // offset = 0;
+        // slideIndex = 0;
+        slides.forEach((slide, i) => {
+          setSlidesSizes(slide, i);
+        });
+      }
+      if (slideIndex > slides.length - 2) {
+        stopScrolling = true;
+      }
+      wrapper.style.transform = `translateX(${offset}px)`;
+      slides.forEach(slide => {
+        slide.classList.remove('carousel-direction__slide_active');
+        // setSlidesSizes(slides[slideIndex], slideIndex);
+      });
+
+      slides[slideIndex].classList.add('carousel-direction__slide_active');
+      for (let i = 1; i < slideIndex; i++) {
+        slides[i].style.marginLeft = 0; //при движении влево чтобы слайды правильно позиционировались слайдам что остались слева делаем margin 0 
+      }
+
+      for (let i = slideIndex + 1; i < slides.length; i++) {
+        slides[i].style.transform = `scale(${1 - (i - slideIndex) / 10})`; //в цепочке слайдов при движении влево пересчитываем масштаб для слайдов справа
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/***/ }),
+
 /***/ "./src/assets/js/main.js":
 /*!*******************************!*\
   !*** ./src/assets/js/main.js ***!
@@ -153,11 +372,17 @@ const burgerInteraction = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./burger */ "./src/assets/js/burger.js");
 /* harmony import */ var _animateIntro__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animateIntro */ "./src/assets/js/animateIntro.js");
+/* harmony import */ var _animateDevelopment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animateDevelopment */ "./src/assets/js/animateDevelopment.js");
+/* harmony import */ var _directionSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./directionSlider */ "./src/assets/js/directionSlider.js");
+
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
   Object(_burger__WEBPACK_IMPORTED_MODULE_0__["burgerInteraction"])();
   Object(_animateIntro__WEBPACK_IMPORTED_MODULE_1__["animateIntro"])();
+  Object(_animateDevelopment__WEBPACK_IMPORTED_MODULE_2__["animateDevelopment"])();
+  Object(_directionSlider__WEBPACK_IMPORTED_MODULE_3__["directionSliderInteraction"])();
 });
 
 /***/ })

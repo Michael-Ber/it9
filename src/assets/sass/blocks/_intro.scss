@@ -2,15 +2,19 @@
     position: relative;
     min-height: 100vh;
     background: url('./assets/img/intro-bg.png') center (center/cover) no-repeat;
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     &__title {
         @include adaptiv-size("font-size", 85.6, 12);
+        position: relative;
         font-family: "Benzin";
         text-align: center;
         margin-top: 200px;
         font-weight: 600;
         line-height: 104%;
         white-space: nowrap;
+        min-height: 50px;
 
         @media(max-width: $breakpoint-575) {
             @include adaptiv-size("font-size", 34, 22);
@@ -31,6 +35,7 @@
     &__btn {
         @include adaptiv-size('width', 220, 140);
         @include adaptiv-size('height', 63, 40);
+        @include adaptiv-size('font-size', 20, 14);
         margin: 61px auto 0 auto;
     }
 
@@ -59,13 +64,14 @@
         align-items: center;
         transition: 1.3s all ease;
 
+
         span {
             display: block;
-
-
         }
 
         &.part-up {
+
+            left: 0;
             background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 98.97%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -93,6 +99,8 @@
             color: $white;
             padding-right: 131px;
             transform: translateX(-100%);
+            top: 50px;
+            right: 0;
 
             &_loaded {
                 transform: translateX(0);

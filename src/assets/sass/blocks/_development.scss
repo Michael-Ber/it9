@@ -1,6 +1,7 @@
 .development {
-    background-color: $black;
-    padding: 138px 0 0 0;
+    background: url('./assets/img/star.png') -20% 5% no-repeat, url('./assets/img/star.png') 120% 100% no-repeat, $black;
+    padding: 138px 0 140px 0;
+
 
     &__top {
         @include adaptiv-size('font-size', 68, 28);
@@ -33,9 +34,38 @@
         line-height: 130%;
     }
 
-    &__list {}
+    &__list {
+        @include adaptiv-size('margin-top', 110, 50);
+        padding: 70px 0 70px 0;
+        border-radius: 30px;
+        border: 1px solid #3D3D3D;
+        background: rgba(31, 31, 31, .5);
+        backdrop-filter: blur(5px);
+    }
 
-    &__item {}
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 35px 100px 50px 0;
+        opacity: 0;
+        transition: .8s opacity ease;
+
+        &:nth-child(n):not(:last-child) {
+            border-bottom: 1px solid #262626;
+        }
+
+        @media(max-width: $breakpoint-767) {
+            padding: 35px 50px 50px 0;
+        }
+
+        @media(max-width: $breakpoint-575) {
+            padding: 35px 10px 50px 0;
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
 }
 
 .key-development {
@@ -64,15 +94,69 @@
 
 .item-development {
 
-    &__num-wrapper {}
+    &__num-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-    &__arrow {}
+    &__arrow {
+        @include adaptiv-size('width', 57, 30);
+        position: relative;
+        height: 3px;
+        background-color: $red-1;
 
-    &__num {}
+        &::after {
+            content: '';
+            width: 10px;
+            height: 3px;
+            position: absolute;
+            top: 4px;
+        }
 
-    &__descr {}
+        &::before {
+            content: '';
+            width: 10px;
+            height: 3px;
+            position: absolute;
+            top: -4px;
+        }
 
-    &__title {}
+        &::after,
+        &::before {
+            background-color: $red-1;
+            right: 0;
+        }
 
-    &__text {}
+        &::after {
+            transform: rotate(135deg);
+        }
+
+        &::before {
+            transform: rotate(-135deg);
+        }
+    }
+
+    &__num {
+        @include adaptiv-size('margin-left', 30, 10);
+        display: block;
+        font-size: 46px;
+        color: $red-1;
+        line-height: 100%
+    }
+
+    &__descr {
+        @include adaptiv-size('margin-left', 60, 38)
+    }
+
+    &__title {
+        @include adaptiv-size('font-size', 30, 20);
+        color: $white;
+    }
+
+    &__text {
+        @include adaptiv-size('font-size', 22, 16);
+        @include adaptiv-size('margin-top', 30, 24);
+        color: $white-70;
+    }
 }
