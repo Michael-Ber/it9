@@ -11,8 +11,6 @@
         }
     }
 
-    &__title {}
-
     &__carousel {
         overflow: hidden;
         margin-top: 106px;
@@ -110,5 +108,9 @@
         @include adaptiv-size("margin-top", 66, 44);
         @include adaptiv-size('font-size', 24, 18);
         background-color: $gray-light !important;
+        transition: .3s all ease !important;
+        &:hover {
+            background-color: lighten($gray-light, 10%) !important;
+        }
     }
 }

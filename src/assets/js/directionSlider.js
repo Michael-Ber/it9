@@ -16,15 +16,14 @@ export const directionSliderInteraction = () => {
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 576) {
-                setTimeout(sliderInit, 1000);
-                // wheelMouse();
+                setTimeout(sliderInit, 1000);//костыль, 1сек задержки на обновление после ресайза
             } else {
                 sliderReset();
             }
         })
         if (window.innerWidth > 576) {
             sliderInit();
-            wheelMouse();
+            wheelMouse(section, body, stopScrolling, deltaYPlus, deltaYMinus, nextHandler);
             
         } else {
             sliderReset();
@@ -42,6 +41,27 @@ export const directionSliderInteraction = () => {
             })
         }
 
+        function wheelMouse() {
+            
+            window.addEventListener('wheel', (e) => {
+                if (e.deltaY > 0 && !stopScrolling) {
+                    if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
+                        body.style.overflow = 'hidden';
+                        if (e.deltaY > 0) {
+                            deltaYPlus += e.deltaY;
+                            deltaYMinus = 0;
+                            if (deltaYPlus > 149) {
+                                nextHandler();
+                                deltaYPlus = 0;
+                            }
+                        }
+                    }
+                } else {
+                    body.style.overflow = 'auto';
+                }
+            })
+        }
+
         function setSlidesSizes(slide, i) {
             if (i > 0) {
                 if (i < 9) {
@@ -55,7 +75,6 @@ export const directionSliderInteraction = () => {
                     child.style.opacity = `${0.3 / i}`;//уменьшение opacity
                 })
                 slideWidth = Number((window.getComputedStyle(slides[0]).width).replace(/px/ig, ''));
-                console.log(slideWidth)
                 wrapper.style.width = slides.length * slideWidth + 'px';
             }
         }
@@ -73,26 +92,7 @@ export const directionSliderInteraction = () => {
             })
         }
 
-        function wheelMouse() {
-            
-            window.addEventListener('wheel', (e) => {
-                if (e.deltaY > 0 && !stopScrolling) {
-                    if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0) {
-                        body.style.overflow = 'hidden';
-                        if (e.deltaY > 0) {
-                            deltaYPlus += e.deltaY;
-                            deltaYMinus = 0;
-                            if (deltaYPlus > 100) {
-                                nextHandler();
-                                deltaYPlus = 0;
-                            }
-                        }
-                    }
-                } else {
-                    body.style.overflow = 'auto';
-                }
-            })
-        }
+        
 
         function nextHandler() {
 
@@ -109,6 +109,7 @@ export const directionSliderInteraction = () => {
             if (slideIndex > slides.length - 2) {
                 stopScrolling = true;
             }
+            console.log(stopScrolling)
             wrapper.style.transform = `translateX(${offset}px)`;
             slides.forEach(slide => {
                 slide.classList.remove('carousel-direction__slide_active');
@@ -154,6 +155,8 @@ export const directionSliderInteraction = () => {
         console.log(error)
     }
 }
+
+
 
 
 // window.addEventListener('wheel', (e) => {
