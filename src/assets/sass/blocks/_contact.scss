@@ -1,0 +1,198 @@
+.contact {
+    background: url('./assets/img/star.png') 60% 60% no-repeat, $black;
+    @media(max-width: $breakpoint-767) {
+        background: $black;
+        padding-bottom: 50px;
+    }
+    &__body {
+        @include adaptiv-size('padding-top', 105, 50);
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media(max-width: $breakpoint-767) {
+            flex-direction: column;
+            gap: 40px;
+        }
+    }
+
+    &__left {
+        @include adaptiv-size('padding-right', 115, 30);
+        width: 60%;
+        border-right: 1px solid $gray;
+        padding-bottom: 100px;
+        @media(max-width: $breakpoint-767) {
+            width: 100%;
+            padding-right: 0;
+            border-right: none;
+            border-bottom: 1px solid $gray;
+        }
+    }
+
+    &__right {
+        @include adaptiv-size('padding-left', 103, 30);
+        width: 40%;
+        @media(max-width: $breakpoint-767) {
+            width: 100%;
+            padding-left: 0;
+            text-align: center;
+        }
+    }
+
+    &__header {
+        @include adaptiv-size('font-size', 72, 38);
+        font-family: "Benzin";
+        font-weight: 700;
+        line-height: 100%;
+    }
+
+    &__subtitle {
+        color: $white;
+    }
+
+    &__title {
+        background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 58.97%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+    }
+
+    &__form {
+        
+        @include adaptiv-size('margin-top', 80, 40);
+        display: grid;
+        grid-template-columns: 50% 50%;
+        column-gap: 25px;
+        row-gap: 20px;
+        @media(max-width: $breakpoint-991) {
+            grid-template-columns: 100%;
+        }
+    }
+
+    &__input {
+        @include adaptiv-size('font-size', 21, 14);
+        @include adaptiv-size('min-height', 63, 40);
+        @include adaptiv-size('padding-left', 20, 10);
+        color: $white;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(5px); 
+        outline: none;
+        border: none;
+
+        &::placeholder {
+            color: $white-50;
+        }
+    }
+    #budget, #msg, &__upload {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        @media(max-width: $breakpoint-991) {
+            grid-column-end: 2;
+        }
+    }
+    #msg {
+        @include adaptiv-size('font-size', 21, 14);
+        @include adaptiv-size('padding-left', 20, 10);
+        resize: none;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(5px); 
+        outline: none;
+        border: none;
+        padding-top: 20px;
+        color: $white;
+        &::placeholder {
+            color: $white-50;
+        }
+    }
+
+    &__file {
+        appearance: none;
+    }
+
+    &__upload {
+        @include adaptiv-size('margin-top', 37, 20);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+        span {
+            @include adaptiv-size('font-size', 22, 15);
+            color: $white-50;
+            flex: 0 0 50%;
+        }
+        input {
+            display: none;
+        }
+    }
+    &__label {
+        @include adaptiv-size('font-size', 22, 15);
+        flex: 0 0 50%;
+        background: linear-gradient(97deg, #5EFF82 1.33%, #F12347 98.97%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        text-align: end;
+        cursor: pointer;
+    }
+
+    // &__submit {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
+    // }
+
+    &__btn {
+        @include adaptiv-size('font-size', 26, 18);
+        width: min(326px, 100%);
+        height: 80px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        flex-grow: 0;
+        @media(max-width: $breakpoint-991) {
+            margin: 0 auto;
+        }
+    }
+
+    &__privacy {
+        @include adaptiv-size('font-size', 16, 12);
+        color: $white-50;
+        text-align: center;
+        align-self: center;
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        span {
+            font-size: 22px;
+            font-weight: 600;
+            color: $red;
+        }
+        a {
+            @include adaptiv-size('font-size', 36, 20);
+            color: $white;
+            text-decoration: underline;
+        }
+        &:nth-child(n):not(:first-child) {
+            @include adaptiv-size('margin-top', 90, 40);
+        }
+    }
+
+    &__telegram {
+    }
+
+    &__email {
+    }
+
+    &__phone {
+        text-decoration: none;
+    }
+}

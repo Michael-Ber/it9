@@ -23,7 +23,7 @@ export const directionSliderInteraction = () => {
         })
         if (window.innerWidth > 576) {
             sliderInit();
-            wheelMouse(section, body, stopScrolling, deltaYPlus, deltaYMinus, nextHandler);
+            wheelMouse();
             
         } else {
             sliderReset();
@@ -99,17 +99,10 @@ export const directionSliderInteraction = () => {
             if (slideIndex < slides.length - 1) {
                 offset += -slideWidth;
                 slideIndex++;
-            } else {
-                // offset = 0;
-                // slideIndex = 0;
-                // slides.forEach((slide, i) => {
-                //     setSlidesSizes(slide, i);
-                // })
-            }
+            } 
             if (slideIndex > slides.length - 2) {
                 stopScrolling = true;
             }
-            console.log(stopScrolling)
             wrapper.style.transform = `translateX(${offset}px)`;
             slides.forEach(slide => {
                 slide.classList.remove('carousel-direction__slide_active');

@@ -2,7 +2,9 @@
     background-color: $black;
     padding: 0 0 113px 0;
 
-
+    @media(max-width: $breakpoint-575) {
+        padding: 0 0 50px 0;
+    }
     &__wrapper {
         @include adaptiv-size('padding-left', 145, 50);
 

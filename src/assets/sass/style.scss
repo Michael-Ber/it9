@@ -7,6 +7,8 @@
 @import './blocks/direction';
 @import './blocks/sport';
 @import './blocks/workus';
+@import './blocks/contact';
+@import './blocks/footer';
 
 * {
     margin: 0;
@@ -16,6 +18,9 @@
 
 body {
     font-family: 'Suisse', sans-serif;
+    @media(max-width: $breakpoint-575) {
+        overflow: auto !important;
+    }
 }
 
 .container {
@@ -26,6 +31,11 @@ body {
 
 ul {
     list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    line-height: inherit;
 }
 
 a {

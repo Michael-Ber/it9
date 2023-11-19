@@ -2,8 +2,13 @@
     @include adaptiv-size('padding-left', 125, 20);
     background: url('./assets/img/star.png') 120% 50% no-repeat, $black;
     overflow-x: hidden;
-    padding-top: 100px;
-
+    padding: 100px 0 50px 0;
+    position: relative;
+    @media(max-width: $breakpoint-575) {
+        padding-left: 25px;
+        padding-right: 25px;
+        // overflow-x: unset;
+    }
     &__title-wrapper {
         display: flex;
         justify-content: space-between;
@@ -19,10 +24,17 @@
     }
 
     &__slider {
+        position: relative;
         display: flex;
         justify-content: flex-start;
         align-items: flex-end;
         min-height: 620px;
+        z-index: 100;
+        @media(max-width: $breakpoint-575) {
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
     }
 
     &__slider-wrapper {
@@ -31,11 +43,15 @@
         align-items: center;
         gap: 40px;
         transition: 1s all ease;
-        
+        @media(max-width: $breakpoint-575) {
+            flex-direction: column;
+            width: 100% !important;
+            transform: translateX(0) !important
+        }
     }
 
     &__slider-slide {
-        @include adaptiv-size('flex-basis', 390, 200);
+        @include adaptiv-size('flex-basis', 390, 300);
         @include adaptiv-size('height', 390, 200);
         flex-grow: 0;
         flex-shrink: 0;
@@ -47,45 +63,41 @@
         background: rgba(31, 31, 31, 0.50);
         backdrop-filter: blur(5px); 
         padding: 40px;
+        @media(max-width: $breakpoint-575) {
+            width: 100%;
+            margin-top: 0 !important;
+        }
     }
 
     &__footer-wrapper {
+        position: absolute;
+        bottom: 40px;
         max-width: 100%;
-        margin-bottom: 200px;
-        
+        z-index: 50;
+        @media(max-width: $breakpoint-575) {
+            bottom: 0;
+        }
     }
     &__footer-subwrapper {
         display: flex;
         overflow: hidden;
-        justify-content: space-between;
-        &:hover {
-            & .workus__footer {
-
-                animation-play-state: paused;
-            }
-        }
+        justify-content: flex-start;
+        gap: 20px;
+        width: 200%;
     }
 
     &__footer {
-        @include adaptiv-size("font-size", 50, 22);
-        min-width: 100%;
+        @include adaptiv-size("font-size", 50, 30);
         display: flex;
-        justify-content: space-between;
-        flex-shrink: 1;
+        justify-content: flex-start;
         align-items: center;
         font-family: "Benzin";
         font-weight: 700;
         margin-top: 50px;
         color: $white-20;
         gap: 20px;
-        line-height: 100%;
-        animation: runningStroke 2s linear infinite;
-
-        // span {
-        //     flex: 1 0 auto;
-        // }
-
-        
+        line-height: 150%;
+        animation: runningStroke 5s linear infinite;
     }
 }
 
@@ -94,7 +106,7 @@
         transform: translateX(0%)
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(calc(-100% - 20px));//подгон
     }
 }
 .slide-workus {
@@ -103,6 +115,11 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
+        @media(max-width: $breakpoint-575) {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &__img {
@@ -125,7 +142,8 @@
 .footer-workus {
     &__arrow {
         position: relative;
-        flex: 0 0 50px;
+        width: 50px;
+        // flex: 1 0 50px;
         height: 3px;
         background-color: $gray;
         margin: 15px 0 0 0;
