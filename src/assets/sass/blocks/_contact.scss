@@ -47,14 +47,55 @@
     }
 
     &__header {
-        @include adaptiv-size('font-size', 72, 38);
+        @include adaptiv-size('font-size', 76, 28);
         font-family: "Benzin";
         font-weight: 700;
         line-height: 100%;
     }
 
     &__subtitle {
+        position: relative;
         color: $white;
+
+        span {
+            @include adaptiv-size('width', 100, 25);
+            position: absolute;
+            display: block;
+            height: 3px;
+            background-color: $white;
+            top: 50%;
+            right: calc(100% + 25px);
+
+            &::after {
+                content: '';
+                width: 10px;
+                height: 3px;
+                position: absolute;
+                top: 4px;
+            }
+
+            &::before {
+                content: '';
+                width: 10px;
+                height: 3px;
+                position: absolute;
+                top: -4px;
+            }
+
+            &::after,
+            &::before {
+                background-color: $white;
+                right: 0;
+            }
+
+            &::after {
+                transform: rotate(135deg);
+            }
+
+            &::before {
+                transform: rotate(-135deg);
+            }
+        }
     }
 
     &__title {
@@ -62,6 +103,47 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: flex-end;
+        gap: 32px;
+
+        span {
+            @include adaptiv-size('height', 36, 20);
+            position: relative;
+            display: block;
+            width: 3px;
+            background-color: $red;
+
+            &::after {
+                content: '';
+                width: 15px;
+                height: 3px;
+                position: absolute;
+                left: -10px;
+            }
+
+            &::before {
+                content: '';
+                width: 15px;
+                height: 3px;
+                position: absolute;
+                left: -2px;
+            }
+
+            &::after,
+            &::before {
+                background-color: $red;
+                bottom: 1px;
+            }
+
+            &::after {
+                transform: rotate(45deg);
+            }
+
+            &::before {
+                transform: rotate(-45deg);
+            }
+        }
     }
 
     &__form {
