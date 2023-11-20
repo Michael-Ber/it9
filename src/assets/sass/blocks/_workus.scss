@@ -3,7 +3,7 @@
     @include adaptiv-size('padding-top', 100, 20);
     @include adaptiv-size('padding-bottom', 50, 20);
     background: url('./assets/img/star.png') 120% 50% no-repeat, $black;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
 
     @media(max-width: $breakpoint-575) {
@@ -26,12 +26,14 @@
     }
 
     &__slider {
+        @include adaptiv-size('max-width', 390, 300);
         position: relative;
         display: flex;
         justify-content: flex-start;
         align-items: flex-end;
         min-height: 620px;
         z-index: 100;
+        overflow: visible;
 
         @media(max-width: $breakpoint-575) {
             justify-content: center;
@@ -42,10 +44,10 @@
 
     &__slider-wrapper {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         align-items: center;
         gap: 40px;
-        transition: 1s all ease;
+        // transition: 1s all ease;
 
         @media(max-width: $breakpoint-575) {
             flex-direction: column;
@@ -55,7 +57,7 @@
     }
 
     &__slider-slide {
-        @include adaptiv-size('flex-basis', 390, 300);
+        @include adaptiv-size('width', 390, 300);
         @include adaptiv-size('height', 390, 200);
         flex-grow: 0;
         flex-shrink: 0;

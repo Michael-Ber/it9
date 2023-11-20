@@ -715,7 +715,7 @@
   padding-top: calc(80 / (1920 - 390) * (100vw - 390px) + 20px) !important;
   padding-bottom: calc(30 / (1920 - 390) * (100vw - 390px) + 20px) !important;
   background: url("./assets/img/star.png") 120% 50% no-repeat, #000000;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 }
 @media (max-width: 575px) {
@@ -736,12 +736,14 @@
   margin-bottom: 20px;
 }
 .workus__slider {
+  max-width: calc(90 / (1920 - 390) * (100vw - 390px) + 300px) !important;
   position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   min-height: 620px;
   z-index: 100;
+  overflow: visible;
 }
 @media (max-width: 575px) {
   .workus__slider {
@@ -752,10 +754,8 @@
 }
 .workus__slider-wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 40px;
-  transition: 1s all ease;
 }
 @media (max-width: 575px) {
   .workus__slider-wrapper {
@@ -765,7 +765,7 @@
   }
 }
 .workus__slider-slide {
-  flex-basis: calc(90 / (1920 - 390) * (100vw - 390px) + 300px) !important;
+  width: calc(90 / (1920 - 390) * (100vw - 390px) + 300px) !important;
   height: calc(190 / (1920 - 390) * (100vw - 390px) + 200px) !important;
   flex-grow: 0;
   flex-shrink: 0;

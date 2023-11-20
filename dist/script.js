@@ -520,7 +520,8 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_animateDevelopment__WEBPACK_IMPORTED_MODULE_2__["animateDevelopment"])();
   // directionSliderInteraction();
   Object(_animateSport__WEBPACK_IMPORTED_MODULE_4__["animateSport"])();
-  Object(_workusSlider__WEBPACK_IMPORTED_MODULE_5__["workusSliderInteraction"])();
+  // workusSliderInteraction();
+  Object(_directionSliderSwiper__WEBPACK_IMPORTED_MODULE_6__["directionSliderSwiperInteraction"])();
   Object(_directionSliderSwiper__WEBPACK_IMPORTED_MODULE_6__["directionSliderSwiperInteraction"])();
 });
 

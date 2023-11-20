@@ -12,8 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     animateDevelopment();
     // directionSliderInteraction();
     animateSport();
-    workusSliderInteraction();
-
+    // workusSliderInteraction();
+    directionSliderSwiperInteraction()
     directionSliderSwiperInteraction();
 
 })
