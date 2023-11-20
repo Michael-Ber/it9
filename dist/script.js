@@ -425,10 +425,6 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_directionSlider__WEBPACK_IMPORTED_MODULE_3__["directionSliderInteraction"])();
   Object(_animateSport__WEBPACK_IMPORTED_MODULE_4__["animateSport"])();
   Object(_workusSlider__WEBPACK_IMPORTED_MODULE_5__["workusSliderInteraction"])();
-  window.addEventListener('resize', test);
-  function test() {
-    console.log('test');
-  }
 });
 
 /***/ }),
@@ -481,7 +477,7 @@ const workusSliderInteraction = () => {
       function wheelMouse() {
         window.addEventListener('wheel', e => {
           if (e.deltaY > 0) {
-            if (sliderWrapper.getBoundingClientRect().top < 500 && !stopScrolling) {
+            if (sliderWrapper.getBoundingClientRect().top < 500 && !stopScrolling && sliderWrapper.getBoundingClientRect().top < 500 && sliderWrapper.getBoundingClientRect().top > 200) {
               body.style.overflow = 'hidden';
               setSliderSlidesPositionOnScroll();
               if (e.deltaY > 0) {

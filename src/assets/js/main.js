@@ -11,14 +11,6 @@ window.addEventListener('DOMContentLoaded', () => {
     animateDevelopment();
     directionSliderInteraction();
     animateSport();
+    workusSliderInteraction();
 
-  
-            workusSliderInteraction();
-       
-
-    window.addEventListener('resize', test)
-
-    function test() {
-        console.log('test');
-    }
 })

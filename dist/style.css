@@ -572,6 +572,7 @@
   font-size: calc(40 / (1920 - 390) * (100vw - 390px) + 36px);
   white-space: nowrap;
 }
+
 .content-sport__title {
   font-size: calc(6 / (1920 - 390) * (100vw - 390px) + 18px);
   color: #ffffff;
@@ -695,9 +696,10 @@
 
 .workus {
   padding-left: calc(105 / (1920 - 390) * (100vw - 390px) + 20px);
+  padding-top: calc(80 / (1920 - 390) * (100vw - 390px) + 20px);
+  padding-bottom: calc(30 / (1920 - 390) * (100vw - 390px) + 20px);
   background: url("./assets/img/star.png") 120% 50% no-repeat, #000000;
   overflow-x: hidden;
-  padding: 100px 0 50px 0;
   position: relative;
 }
 @media (max-width: 575px) {
@@ -970,12 +972,14 @@
 .contact__input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
-.contact #budget, .contact #msg, .contact__upload {
+.contact #budget,
+.contact #msg, .contact__upload {
   grid-column-start: 1;
   grid-column-end: 3;
 }
 @media (max-width: 991px) {
-  .contact #budget, .contact #msg, .contact__upload {
+  .contact #budget,
+  .contact #msg, .contact__upload {
     grid-column-end: 2;
   }
 }

@@ -1,18 +1,20 @@
 .workus {
     @include adaptiv-size('padding-left', 125, 20);
+    @include adaptiv-size('padding-top', 100, 20);
+    @include adaptiv-size('padding-bottom', 50, 20);
     background: url('./assets/img/star.png') 120% 50% no-repeat, $black;
     overflow-x: hidden;
-    padding: 100px 0 50px 0;
     position: relative;
+
     @media(max-width: $breakpoint-575) {
         padding-left: 25px;
         padding-right: 25px;
-        // overflow-x: unset;
     }
+
     &__title-wrapper {
         display: flex;
         justify-content: space-between;
-        align-items:flex-end;
+        align-items: flex-end;
     }
 
     &__title {
@@ -30,6 +32,7 @@
         align-items: flex-end;
         min-height: 620px;
         z-index: 100;
+
         @media(max-width: $breakpoint-575) {
             justify-content: center;
             align-items: center;
@@ -43,6 +46,7 @@
         align-items: center;
         gap: 40px;
         transition: 1s all ease;
+
         @media(max-width: $breakpoint-575) {
             flex-direction: column;
             width: 100% !important;
@@ -61,8 +65,9 @@
         border-radius: 20px;
         border: 1px solid #3D3D3D;
         background: rgba(31, 31, 31, 0.50);
-        backdrop-filter: blur(5px); 
+        backdrop-filter: blur(5px);
         padding: 40px;
+
         @media(max-width: $breakpoint-575) {
             width: 100%;
             margin-top: 0 !important;
@@ -74,10 +79,12 @@
         bottom: 40px;
         max-width: 100%;
         z-index: 50;
+
         @media(max-width: $breakpoint-575) {
             bottom: 0;
         }
     }
+
     &__footer-subwrapper {
         display: flex;
         overflow: hidden;
@@ -105,16 +112,19 @@
     0% {
         transform: translateX(0%)
     }
+
     100% {
-        transform: translateX(calc(-100% - 20px));//подгон
+        transform: translateX(calc(-100% - 20px)); //подгон
     }
 }
+
 .slide-workus {
 
     &__content {
         display: flex;
         flex-direction: column;
         gap: 40px;
+
         @media(max-width: $breakpoint-575) {
             flex-direction: row;
             justify-content: center;
@@ -125,6 +135,7 @@
     &__img {
         @include adaptiv-size('width', 80, 50);
         @include adaptiv-size('height', 80, 50);
+
         img {
             width: 100%;
             height: 100%;
@@ -143,10 +154,10 @@
     &__arrow {
         position: relative;
         width: 50px;
-        // flex: 1 0 50px;
         height: 3px;
         background-color: $gray;
         margin: 15px 0 0 0;
+
         &::after {
             content: '';
             width: 10px;
@@ -164,11 +175,13 @@
             top: -4px;
             transform: rotate(-45deg);
         }
+
         &::after,
         &::before {
             background-color: $gray;
             left: 0px;
         }
+
         b {
             &::after {
                 content: '';
@@ -178,7 +191,7 @@
                 top: 4px;
                 transform: rotate(135deg);
             }
-    
+
             &::before {
                 content: '';
                 width: 10px;
@@ -187,6 +200,7 @@
                 top: -4px;
                 transform: rotate(-135deg);
             }
+
             &::after,
             &::before {
                 background-color: $gray;
@@ -195,5 +209,3 @@
         }
     }
 }
-
-

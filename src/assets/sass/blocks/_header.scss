@@ -26,7 +26,6 @@
         @include adaptiv-size('gap', calc(65.97 - (19.79 * 2)), 10);
         display: flex;
         align-items: center;
-        // gap: calc(65.97px - (19.79px * 2));
     }
 
     &__item {
