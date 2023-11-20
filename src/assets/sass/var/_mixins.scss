@@ -1,6 +1,6 @@
 @mixin adaptiv-size($propName, $pcSize, $mobSize) {
     $addSize: $pcSize - $mobSize;
-    #{$propName}: calc((#{$addSize} / (#{$maxWidth} - #{$minWidth}) * ((100vw - #{$minWidth + px})) + #{$mobSize + px}));
+    #{$propName}: calc((#{$addSize} / (#{$maxWidth} - #{$minWidth}) * ((100vw - #{$minWidth + px})) + #{$mobSize + px})) !important;
 }
 
 

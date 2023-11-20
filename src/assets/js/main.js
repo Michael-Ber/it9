@@ -4,13 +4,16 @@ import { animateDevelopment } from "./animateDevelopment";
 import { directionSliderInteraction } from "./directionSlider";
 import { animateSport } from "./animateSport";
 import { workusSliderInteraction } from "./workusSlider";
+import { directionSliderSwiperInteraction } from "./directionSliderSwiper";
 
 window.addEventListener('DOMContentLoaded', () => {
     burgerInteraction();
     animateIntro();
     animateDevelopment();
-    directionSliderInteraction();
+    // directionSliderInteraction();
     animateSport();
     workusSliderInteraction();
+
+    directionSliderSwiperInteraction();
 
 })
