@@ -11,16 +11,11 @@ export const workusSliderInteraction = () => {
             sliderOn();
         }
 
-
-
-
-
         function sliderOn() {
             const body = document.querySelector('body');
             const section = document.querySelector('.workus');
             const sliderWrapper = document.querySelector('.workus__slider-wrapper');
             const slide = document.querySelector('.workus__slider-slide');
-
             let slideWidth = 0;
 
             let stopScrolling = false;
@@ -98,7 +93,7 @@ export const workusSliderInteraction = () => {
                 if (window.innerWidth > 576) {
                     Array.from(sliderWrapper.children).forEach((slide, i) => {
                         if (i > 0) {
-                            slide.style.marginTop = `${-240 * i}px`;
+                            slide.style.marginTop = `${-170 * i}px`;
                         }
                     })
                     sliderWrapper.style.transform = 'translateX(0)';

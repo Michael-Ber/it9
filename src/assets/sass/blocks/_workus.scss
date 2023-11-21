@@ -1,10 +1,15 @@
 .workus {
     @include adaptiv-size('padding-left', 125, 20);
-    @include adaptiv-size('padding-top', 100, 20);
-    @include adaptiv-size('padding-bottom', 50, 20);
     background: url('./assets/img/star.png') 120% 50% no-repeat, $black;
     overflow-x: hidden;
     position: relative;
+
+    &__wrapper {
+        @include adaptiv-size('padding-top', 100, 20);
+        padding-bottom: 70px;
+        max-width: 1780px;
+        overflow-x: hidden;
+    }
 
     @media(max-width: $breakpoint-575) {
         padding-left: 25px;
@@ -15,23 +20,36 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        gap: 15px;
     }
 
     &__title {
         line-height: 100%;
+
+        @media(max-width: $breakpoint-575) {
+            flex: 0 0 70%
+        }
     }
 
     &__title-arrow {
         margin-bottom: 20px;
+
+        @media(max-width: $breakpoint-575) {
+            flex: 0 0 30%
+        }
     }
 
+
+
     &__slider {
+        @include adaptiv-size('min-height', 620, 400);
         position: relative;
         display: flex;
         justify-content: flex-start;
-        align-items: flex-end;
-        min-height: 620px;
+        align-items: center;
+        // min-height: 620px;
         z-index: 100;
+
 
         @media(max-width: $breakpoint-575) {
             justify-content: center;

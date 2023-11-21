@@ -696,11 +696,15 @@
 
 .workus {
   padding-left: calc(105 / (1920 - 390) * (100vw - 390px) + 20px);
-  padding-top: calc(80 / (1920 - 390) * (100vw - 390px) + 20px);
-  padding-bottom: calc(30 / (1920 - 390) * (100vw - 390px) + 20px);
   background: url("./assets/img/star.png") 120% 50% no-repeat, #000000;
   overflow-x: hidden;
   position: relative;
+}
+.workus__wrapper {
+  padding-top: calc(80 / (1920 - 390) * (100vw - 390px) + 20px);
+  padding-bottom: 70px;
+  max-width: 1780px;
+  overflow-x: hidden;
 }
 @media (max-width: 575px) {
   .workus {
@@ -712,19 +716,30 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 15px;
 }
 .workus__title {
   line-height: 100%;
 }
+@media (max-width: 575px) {
+  .workus__title {
+    flex: 0 0 70%;
+  }
+}
 .workus__title-arrow {
   margin-bottom: 20px;
 }
+@media (max-width: 575px) {
+  .workus__title-arrow {
+    flex: 0 0 30%;
+  }
+}
 .workus__slider {
+  min-height: calc(220 / (1920 - 390) * (100vw - 390px) + 400px);
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
-  min-height: 620px;
+  align-items: center;
   z-index: 100;
 }
 @media (max-width: 575px) {

@@ -516,7 +516,7 @@ const workusSliderInteraction = () => {
         if (window.innerWidth > 576) {
           Array.from(sliderWrapper.children).forEach((slide, i) => {
             if (i > 0) {
-              slide.style.marginTop = `${-240 * i}px`;
+              slide.style.marginTop = `${-170 * i}px`;
             }
           });
           sliderWrapper.style.transform = 'translateX(0)';
