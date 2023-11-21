@@ -27,7 +27,7 @@ export const directionSliderSwiperInteraction = () => {
         slidesPerView: 1,
 
         mousewheel: true,
-
+        grabCursor: true,
         slideActiveClass: 'carousel-direction__slide_active',
         slideClass: 'carousel-direction__slide',
         wrapperClass: 'carousel-direction__wrapper',

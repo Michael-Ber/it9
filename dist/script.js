@@ -428,6 +428,7 @@ const directionSliderSwiperInteraction = () => {
     speed: 400,
     slidesPerView: 1,
     mousewheel: true,
+    grabCursor: true,
     slideActiveClass: 'carousel-direction__slide_active',
     slideClass: 'carousel-direction__slide',
     wrapperClass: 'carousel-direction__wrapper',
@@ -667,10 +668,13 @@ const workusSliderSwiperInteraction = () => {
   const slidesWrapper = document.querySelector('.workus__slider-wrapper');
   const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''));
   let scrollNext = false;
+  let sliderOn = false;
+  let sliderOffOnEnd = false;
   const swiper = new Swiper('.workus__slider', {
     loop: false,
     speed: 400,
     slidesPerView: 4,
+    grabCursor: true,
     mousewheel: true,
     slideActiveClass: 'workus__slider-slide_active',
     slideClass: 'workus__slider-slide',
@@ -683,31 +687,16 @@ const workusSliderSwiperInteraction = () => {
           swiper.enable();
         }
       },
-      reachBeginning: function (swiper) {
-        // body.style.overflow = 'auto';
-        // swiper.disable();
-      },
       reachEnd: function (swiper) {
-        // const body = document.querySelector('body');
         scrollNext = true;
-        // body.style.overflow = 'auto';
-        // swiper.destroy(false, false);
+        sliderOffOnEnd = true;
         swiper.disable();
+        console.log('end');
       }
-    }
-  });
-  window.addEventListener('scroll', () => {
-    if (section.getBoundingClientRect().top < -200 && section.getBoundingClientRect().top > -400 && !scrollNext) {
-      // body.style.overflow = 'hidden';
-      // swiper.enable();
-    } else if (section.getBoundingClientRect().top < -400) {
-      // body.style.overflow = 'auto';
-      // swiper.disable();
     }
   });
   window.addEventListener('wheel', () => {
     if (slidesWrapper.getBoundingClientRect().top < 500 && slidesWrapper.getBoundingClientRect().top > 100) {
-      swiper.enable();
       Array.from(slidesWrapper.children).forEach((slide, i) => {
         if (i > 0) {
           slide.style.marginTop = `${0}px`;
@@ -715,7 +704,6 @@ const workusSliderSwiperInteraction = () => {
       });
       slider.style.margitTop = '0px';
     } else {
-      swiper.disable();
       swiper.setTranslate('0');
       Array.from(slidesWrapper.children).forEach((slide, i) => {
         if (i > 0) {
