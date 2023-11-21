@@ -7,14 +7,17 @@ export const directionSliderSwiperInteraction = () => {
     let marginLeftToSlide = 150;
 
     window.addEventListener('scroll', () => {
-        if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0 && !scrollNext) {
+        if (section.getBoundingClientRect().top < 0 && section.getBoundingClientRect().top > -200 && !scrollNext) {
+            console.log('here')
             body.style.overflow = 'hidden';
-        }else {
-            body.style.overflow = 'auto';
         }
+        // else {
+        //     body.style.overflow = 'auto';
+        //     console.log('auto')
+        // }
     })
 
-    
+
 
 
 
@@ -69,7 +72,7 @@ export const directionSliderSwiperInteraction = () => {
                 const body = document.querySelector('body');
                 body.style.overflow = 'auto';
             },
-            resize: function() {
+            resize: function () {
                 const slidesWrapper = document.querySelector('.carousel-direction__wrapper');
                 const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
                 marginLeftToSlide = ((150 - 50) / (1920 - 390) * ((window.innerWidth - 390)) + 50);
@@ -79,9 +82,9 @@ export const directionSliderSwiperInteraction = () => {
 
                     }
                 })
-                if(window.innerWidth < 576) {
+                if (window.innerWidth < 576) {
                     swiper.disable();
-                }else {
+                } else {
                     swiper.enable();
                 }
 

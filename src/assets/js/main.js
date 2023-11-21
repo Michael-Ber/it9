@@ -4,6 +4,7 @@ import { animateDevelopment } from "./animateDevelopment";
 import { directionSliderInteraction } from "./directionSlider";
 import { animateSport } from "./animateSport";
 import { workusSliderInteraction } from "./workusSlider";
+import { workusSliderSwiperInteraction } from "./workusSliderSwiper";
 import { directionSliderSwiperInteraction } from "./directionSliderSwiper";
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -14,6 +15,5 @@ window.addEventListener('DOMContentLoaded', () => {
     animateSport();
     // workusSliderInteraction();
     directionSliderSwiperInteraction()
-    directionSliderSwiperInteraction();
-
+    workusSliderSwiperInteraction();
 })

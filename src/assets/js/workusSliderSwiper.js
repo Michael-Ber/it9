@@ -1,97 +1,80 @@
 export const workusSliderSwiperInteraction = () => {
     const body = document.querySelector('body');
     const section = document.querySelector('.workus');
+    const slider = document.querySelector('.workus__slider');
+    const slidesWrapper = document.querySelector('.workus__slider-wrapper');
+    const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
+
     let scrollNext = false;
-
-    window.addEventListener('scroll', () => {
-        if (section.getBoundingClientRect().top < 0 && window.innerHeight - section.getBoundingClientRect().bottom < 0 && !scrollNext) {
-            body.style.overflow = 'hidden';
-        }else {
-            body.style.overflow = 'auto';
-        }
-    })
-
-    
-
 
 
     const swiper = new Swiper('.workus__slider', {
         loop: false,
         speed: 400,
-        slidesPerView: 1,
+        slidesPerView: 4,
 
         mousewheel: true,
 
         slideActiveClass: 'workus__slider-slide_active',
         slideClass: 'workus__slider-slide',
         wrapperClass: 'workus__slider-wrapper',
-
         on: {
-            beforeInit: function () {
-
-                const slidesWrapper = document.querySelector('.workus__slider-wrapper');
-                Array.from(slidesWrapper.children).forEach((slide, i) => {
-                    if (i > 0) {
-                        slide.style.marginTop = `${-240 * i}px`;
-                    }
-                })
-
-            },
-            init: function() {
-                const slidesWrapper = document.querySelector('.workus__slider-wrapper');
-                Array.from(slidesWrapper.children).forEach((slide, i) => {
-                    if (i > 0) {
-                        slide.style.marginTop = `${0}px`;
-                    }
-                })
-            },
-            slideChangeTransitionStart: function () {
-                const slidesWrapper = document.querySelector('.workus__slider-wrapper');
-                const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
-                Array.from(slidesWrapper.children).forEach((slide, i, arr) => {
-                    if (slide.classList.contains('carousel-direction__slide_active')) {
-                        for (let y = 0; y < i; y++) {
-                            arr[y].style.marginLeft = 0;
-                        }
-                        for (let o = i + 1; o < arr.length; o++) {
-                            arr[o].style.transform = `scale(${1 - ((o - i) / 10)}) translateX(${-(slideWidth - slideWidth * (1 - ((o - i) / 10))) / 2 / (1 - ((o - i) / 10))}px`;
-                            arr[o].style.marginLeft = `${-(slideWidth - slideWidth * (1 - (((o - i) - 1) / 10))) - marginLeftToSlide}px`;
-                            Array.from(arr[o].children).forEach(child => {
-                                child.style.opacity = `${0.3 / i}`;
-                            })
-                        }
-                    }
-                })
-            },
-            reachBeginning: function (swiper) {
-                const body = document.querySelector('body');
-                body.style.overflow = 'auto';
-            },
-            resize: function() {
-                const slidesWrapper = document.querySelector('.workus__slider-wrapper');
-                const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
-                marginLeftToSlide = ((150 - 50) / (1920 - 390) * ((window.innerWidth - 390)) + 50);
-                Array.from(slidesWrapper.children).forEach((slide, i) => {
-                    if (i > 0) {
-                        slide.style.marginLeft = `${-(slideWidth - slideWidth * (1 - ((i - 1) / 10))) - marginLeftToSlide}px`;
-
-                    }
-                })
-                if(window.innerWidth < 576) {
+            resize: function () {
+                if (window.innerWidth < 576) {
                     swiper.disable();
-                }else {
+                } else {
                     swiper.enable();
                 }
 
             },
-
+            reachBeginning: function (swiper) {
+                // body.style.overflow = 'auto';
+                // swiper.disable();
+            },
             reachEnd: function (swiper) {
-                const body = document.querySelector('body');
+                // const body = document.querySelector('body');
                 scrollNext = true;
-                body.style.overflow = 'auto';
+                // body.style.overflow = 'auto';
+                // swiper.destroy(false, false);
                 swiper.disable();
+
             }
         }
     });
-    
+
+    window.addEventListener('scroll', () => {
+        if (section.getBoundingClientRect().top < -200 && section.getBoundingClientRect().top > -400 && !scrollNext) {
+            // body.style.overflow = 'hidden';
+            // swiper.enable();
+        } else if (section.getBoundingClientRect().top < -400) {
+            // body.style.overflow = 'auto';
+            // swiper.disable();
+        }
+    })
+
+
+    window.addEventListener('wheel', () => {
+        if (slidesWrapper.getBoundingClientRect().top < 500 && slidesWrapper.getBoundingClientRect().top > 100) {
+            swiper.enable();
+            Array.from(slidesWrapper.children).forEach((slide, i) => {
+                if (i > 0) {
+                    slide.style.marginTop = `${0}px`;
+                }
+            })
+            slider.style.margitTop = '0px';
+        } else {
+            swiper.disable();
+            swiper.setTranslate('0');
+            Array.from(slidesWrapper.children).forEach((slide, i) => {
+                if (i > 0) {
+                    slide.style.marginTop = `${-170 * i}px`;
+
+                }
+            })
+            slider.style.margitTop = '-170px';
+        }
+    })
+
+
+
 }
