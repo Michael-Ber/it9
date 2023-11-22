@@ -5,10 +5,10 @@ export const workusSliderSwiperInteraction = () => {
     const slidesWrapper = document.querySelector('.workus__slider-wrapper');
     const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
 
-    let scrollNext = false;
+
 
     let sliderOn = false;
-    let sliderOffOnEnd = false;
+    let sliderOff = false;
 
 
     const swiper = new Swiper('.workus__slider', {
@@ -39,40 +39,42 @@ export const workusSliderSwiperInteraction = () => {
             }
         },
 
-        // on: {
-        // init: function () {
-        //     // slidesWrapper.style.transform = 'translate3d(0, 0, 0)';
-        //     console.log('init');
-        // },
-        // beforeInit: function () {
-        //     console.log('beforeInit');
-        // }
-        // resize: function () {
-        //     if (window.innerWidth < 576) {
-        //         swiper.disable();
-        //     } else {
-        //         swiper.enable();
-        //     }
-        // },
-        // reachEnd: function (swiper) {
-        //     scrollNext = true;
-        //     sliderOffOnEnd = true;
-        //     // swiper.disable();
-        // }
-        // }
+        on: {
+            resize: function () {
+                if (window.innerWidth < 576) {
+                    swiper.disable();
+                } else {
+                    swiper.enable();
+                }
+            },
+            reachEnd: function (swiper) {
+                swiper.disable();
+                body.style.overflow = 'auto';
+            },
+            reachBeginning: function () {
+                swiper.disable()
+                body.style.overflow = 'auto';
+            }
+        }
     });
 
-    window.addEventListener('wheel', () => {
-        if (slidesWrapper.getBoundingClientRect().top < 500 && slidesWrapper.getBoundingClientRect().top > 100) {
+    window.addEventListener('wheel', checkSectionReached);
+    window.addEventListener('scroll', checkSectionReached);
+
+    function checkSectionReached(e, sliderEl, wrapperEl, bodyEl, swiperEl, sliderOnBool) {
+        if (slidesWrapper.getBoundingClientRect().top < 400 && slidesWrapper.getBoundingClientRect().top > 100 && !sliderOn) {
+            sliderOn = true;
             Array.from(slidesWrapper.children).forEach((slide, i) => {
                 if (i > 0) {
                     slide.style.marginTop = `${0}px`;
                 }
             })
             slider.style.margitTop = '0px';
-            swiper.enable()
-        } else {
-            swiper.setTranslate('0');
+            swiper.enable();
+            body.style.overflow = 'hidden';
+        }
+        if (slidesWrapper.getBoundingClientRect().top <= 100 || slidesWrapper.getBoundingClientRect().top >= 400) {
+            sliderOn = false;
             Array.from(slidesWrapper.children).forEach((slide, i) => {
                 if (i > 0) {
                     slide.style.marginTop = `${-170 * i}px`;
@@ -80,11 +82,14 @@ export const workusSliderSwiperInteraction = () => {
                 }
             })
             slider.style.margitTop = '-170px';
-            swiper.disable();
+            swiper.disable()
+            body.style.overflow = 'auto';
         }
-    })
+
+    }
 
 
 
 
 }
+
