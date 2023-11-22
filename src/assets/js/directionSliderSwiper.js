@@ -8,7 +8,6 @@ export const directionSliderSwiperInteraction = () => {
 
     window.addEventListener('scroll', () => {
         if (section.getBoundingClientRect().top < 0 && section.getBoundingClientRect().top > -200 && !scrollNext) {
-            console.log('here')
             body.style.overflow = 'hidden';
         }
         // else {
@@ -34,7 +33,7 @@ export const directionSliderSwiperInteraction = () => {
 
         on: {
             init: function () {
-
+                console.log('dir init');
                 const slidesWrapper = document.querySelector('.carousel-direction__wrapper');
                 const slideWidth = Number(window.getComputedStyle(Array.from(slidesWrapper.children)[0]).width.replace(/px/ig, ''))
                 Array.from(slidesWrapper.children).forEach((slide, i) => {
@@ -87,7 +86,6 @@ export const directionSliderSwiperInteraction = () => {
                 } else {
                     swiper.enable();
                 }
-
             },
 
             reachEnd: function (swiper) {

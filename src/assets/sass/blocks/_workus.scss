@@ -44,8 +44,7 @@
     }
 
     &__slider {
-        // @include adaptiv-size('max-width', 1920, 300);
-        max-width: 100%;
+        // @include adaptiv-size('max-width', calc(390 + 40), 300);
         position: relative;
         display: flex;
         justify-content: flex-start;

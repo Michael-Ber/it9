@@ -752,7 +752,6 @@
   }
 }
 .workus__slider {
-  max-width: 100%;
   position: relative;
   display: flex;
   justify-content: flex-start;
