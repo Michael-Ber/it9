@@ -62,6 +62,7 @@ export const workusSliderSwiperInteraction = () => {
     window.addEventListener('scroll', checkSectionReached);
 
     function checkSectionReached(e, sliderEl, wrapperEl, bodyEl, swiperEl, sliderOnBool) {
+        console.log(slidesWrapper.getBoundingClientRect().top)
         if (slidesWrapper.getBoundingClientRect().top < 400 && slidesWrapper.getBoundingClientRect().top > 100 && !sliderOn) {
             sliderOn = true;
             Array.from(slidesWrapper.children).forEach((slide, i) => {
@@ -87,9 +88,5 @@ export const workusSliderSwiperInteraction = () => {
         }
 
     }
-
-
-
-
 }
 

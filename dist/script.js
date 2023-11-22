@@ -528,7 +528,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_animateSport__WEBPACK_IMPORTED_MODULE_4__["animateSport"])();
   // workusSliderInteraction();
   Object(_directionSliderSwiper__WEBPACK_IMPORTED_MODULE_7__["directionSliderSwiperInteraction"])();
-  // workusSliderSwiperInteraction();
+  Object(_workusSliderSwiper__WEBPACK_IMPORTED_MODULE_6__["workusSliderSwiperInteraction"])();
 });
 
 /***/ }),
@@ -716,6 +716,7 @@ const workusSliderSwiperInteraction = () => {
   window.addEventListener('wheel', checkSectionReached);
   window.addEventListener('scroll', checkSectionReached);
   function checkSectionReached(e, sliderEl, wrapperEl, bodyEl, swiperEl, sliderOnBool) {
+    console.log(slidesWrapper.getBoundingClientRect().top);
     if (slidesWrapper.getBoundingClientRect().top < 400 && slidesWrapper.getBoundingClientRect().top > 100 && !sliderOn) {
       sliderOn = true;
       Array.from(slidesWrapper.children).forEach((slide, i) => {
